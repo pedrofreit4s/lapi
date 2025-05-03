@@ -15,7 +15,7 @@ type HttpError interface {
 
 // error é uma implementação concreta de HttpError.
 // Ela armazena o código de status, a mensagem de erro, a requisição e a resposta associada ao erro.
-type error struct {
+type httpError struct {
 	statusCode int
 	message    string
 	request    interface{}
@@ -23,28 +23,28 @@ type error struct {
 }
 
 // Message implements HttpError.
-func (e *error) Message() string {
+func (e *httpError) Message() string {
 	return e.message
 }
 
 // Request implements HttpError.
-func (e *error) Request() interface{} {
+func (e *httpError) Request() interface{} {
 	return e.request
 }
 
 // Response implements HttpError.
-func (e *error) Response() interface{} {
+func (e *httpError) Response() interface{} {
 	return e.response
 }
 
 // StatusCode implements HttpError.
-func (e *error) StatusCode() int {
+func (e *httpError) StatusCode() int {
 	return e.statusCode
 }
 
 // NewError cria um novo erro HTTP.
 func NewError(statusCode int, message string, request interface{}, response interface{}) HttpError {
-	return &error{
+	return &httpError{
 		statusCode: statusCode,
 		message:    message,
 		request:    request,
@@ -52,6 +52,6 @@ func NewError(statusCode int, message string, request interface{}, response inte
 	}
 }
 
-func (e *error) Error() string {
+func (e *httpError) Error() string {
 	return e.message
 }

@@ -6,7 +6,7 @@ import (
 	"log"
 	"strings"
 
-	lapi "github.com/pedrofreit4s/lapi/internal/lapi/request"
+	"github.com/pedrofreit4s/lapi/internal/lapi"
 )
 
 func main() {
@@ -16,7 +16,6 @@ func main() {
 	r.SetMethod("GET")
 
 	r.SetBaseURL("https://example.com")
-
 	r.SetHeader("Content-Type", "application/json")
 	r.SetHeader("Authorization", "Bearer 1234567890")
 
