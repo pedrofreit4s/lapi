@@ -34,6 +34,8 @@ go mod download
 
 ## Uso Básico
 
+### Exemplo 1: Requisição Simples
+
 ```go
 // Criando uma requisição
 r := lapi.NewRequest()
@@ -62,6 +64,35 @@ if err != nil {
 }
 
 fmt.Println(string(body))
+```
+
+### Exemplo 2: Usando JSONPlaceholder
+
+```go
+// Criando uma instância da API com configurações padrão
+api := lapi.NewRequest(
+    "https://jsonplaceholder.typicode.com",
+    map[string]string{
+        "Content-Type": "application/json",
+    },
+    10, // timeout em segundos
+)
+
+// Definindo a estrutura que receberá a resposta
+var dest struct {
+    ID     int    `json:"id"`
+    Title  string `json:"title"`
+    UserID int    `json:"userId"`
+}
+
+// Fazendo uma requisição GET
+err := api.Get("/todos/1", &dest)
+if err != nil {
+    log.Fatal(err)
+}
+
+// A resposta será automaticamente deserializada para a estrutura dest
+fmt.Printf("Todo: %+v\n", dest)
 ```
 
 ## Estrutura do Projeto
