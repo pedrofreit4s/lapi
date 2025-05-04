@@ -76,8 +76,6 @@ func (m *model) MakeRequest(method string, path string, payload *interface{}, de
 		req.Header.Add(k, v)
 	}
 
-	fmt.Println(req.Header)
-
 	// Parse the auth
 	if m.Auth.Token != "" {
 		req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", m.Auth.Token))

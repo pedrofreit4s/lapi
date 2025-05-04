@@ -51,7 +51,7 @@ func main() {
 		UserID int    `json:"userId"`
 	}
 
-	err := api.Post("/todos/1", nil, &dest)
+	err := api.Get("/todos/1", &dest)
 	if err != nil {
 		log.Fatal(err)
 	}
