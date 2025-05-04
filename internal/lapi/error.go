@@ -43,12 +43,20 @@ func (e *httpError) StatusCode() int {
 }
 
 // NewError cria um novo erro HTTP.
-func NewError(statusCode int, message string, request interface{}, response interface{}) HttpError {
+func (m *model) NewError(statusCode int, message string, request interface{}, response interface{}) HttpError {
 	return &httpError{
 		statusCode: statusCode,
 		message:    message,
 		request:    request,
 		response:   response,
+	}
+}
+
+// MakeError cria um novo erro HTTP.
+func (m *model) MakeError(statusCode int, err, message string) *httpError {
+	return &httpError{
+		statusCode: statusCode,
+		message:    message,
 	}
 }
 
